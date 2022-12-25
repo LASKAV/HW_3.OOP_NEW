@@ -71,6 +71,23 @@ public:
         strcat_s(temp_str.String_, temp_str.Length_+ 1,temp_String.String_);
         return temp_str;
     }
+// _______________________________________________________________________________________________________________________________//
+    MYString operator++()             // 6. Перегрузить оператор ++ (добавление к концу нашего объекта-строки одного символа 'x')
+    {
+        char symbol[10]{"xxx"};
+        MYString temp_str;
+        temp_str.Length_ = this->Length_ + strlen(symbol) + 1;
+        temp_str.String_ = new char[temp_str.Length_ + 1];
+        strcpy_s(temp_str.String_, temp_str.Length_ + 1, String_);
+        strcat_s(temp_str.String_, temp_str.Length_ + 1, symbol);
+
+        this->String_ = new char[temp_str.Length_ + 1];
+        strcpy_s(String_, temp_str.Length_ + 1, temp_str.String_);
+
+        return *this;
+    }
+// _______________________________________________________________________________________________________________________________//
+
     void InpuT()                           // Функция ввода данных
     {
         if (String_ != nullptr)            // Делаем проверку если строка 
@@ -85,7 +102,7 @@ public:
         strcpy_s(String_, Length_, Input_String);
     }
 
-    void OutPut()                          // Функция вывода данных
+    void OutPut() const                          // Функция вывода данных
     {
         std::cout << "String received : " << String_ << std::endl;
     }
