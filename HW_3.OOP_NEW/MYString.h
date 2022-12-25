@@ -89,22 +89,26 @@ public:
 // _______________________________________________________________________________________________________________________________
     MYString operator--()             // 7. Перегрузить оператор -- (удаление одного символа из конца нашего объекта-строки)
     {
-        MYString temp_str;
-        temp_str.Length_ = strlen(this->String_);
-        temp_str.String_ = new char[temp_str.Length_ + 1];
+        MYString temp_str;  // Внутри метода класса создаем переменную
+        temp_str.Length_ = strlen(this->String_);               //  применяем шаблонный алгоритм для строки с выделение памяти 
+        temp_str.String_ = new char[temp_str.Length_ + 1];      
         // Нам нужно перебрать массив и удалить один символа из конца
-        int i = NULL;
+        int i = NULL;  // инициализируем переменную типа int для массива символов 
         for (i = 0; i < temp_str.Length_ - 1; i++)
         {
-            temp_str.String_[i] = String_[i];
+            temp_str.String_[i] = String_[i];  // передаем символы из объекта класса в наш временный объект 
         }
-        temp_str.String_[i] = 0;
-        this->String_ = new char[temp_str.Length_ + 1];
-        strcpy_s(String_, temp_str.Length_ + 1, temp_str.String_);
+        temp_str.String_[i] = 0;  // конец строки объекта 
+        this->String_ = new char[temp_str.Length_ + 1];  // для основоного объекта шаблонный алгоритм выделение памяти
+        strcpy_s(String_, temp_str.Length_ + 1, temp_str.String_);  // копируем наш временный в основной с учетом -1 символ 
 
-        return *this;
+        return *this;  // возвращаем конст - указатель нашего объекта  
     }
 // _______________________________________________________________________________________________________________________________
+    MYString operator<(const MYString temp_str)  // 8. Перегрузить оператор <
+    {
+
+    }
     void InpuT()                           // Функция ввода данных
     {
         if (String_ != nullptr)            // Делаем проверку если строка 

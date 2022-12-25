@@ -82,11 +82,11 @@ int main()
 	delete[] temp_string_Overload_two;
 //	frame();
 // _______________________________________________________________________________________________________________________________
-//	std::cout << "Overload (++) " << std::endl;   // 6. Перегрузить оператор ++ (добавление к концу нашего объекта-строки одного символа 'x')
-//	MYString Overload_two = temp_string_Overload_O;
-//	++Overload_two;
-//	Overload_two.OutPut();
-//	frame();
+	std::cout << "Overload (++) " << std::endl;   // 6. Перегрузить оператор ++ (добавление к концу нашего объекта-строки одного символа 'x')
+	MYString Overload_two = temp_string_Overload_O;
+	++Overload_two;
+	Overload_two.OutPut();
+	frame();
 // _______________________________________________________________________________________________________________________________
 	std::cout << "Overload (--) " << std::endl;  // 7. Перегрузить оператор -- (удаление одного символа из конца нашего объекта-строки)
 	MYString Overlad_three = temp_string_Overload_G;
