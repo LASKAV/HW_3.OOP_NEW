@@ -105,10 +105,32 @@ public:
         return *this;  // возвращаем конст - указатель нашего объекта  
     }
 // _______________________________________________________________________________________________________________________________
-    MYString operator<(const MYString temp_str)  // 8. Перегрузить оператор <
+    MYString operator<(const MYString& temp_str)  // 8. Перегрузить оператор <
     {
-
+        int str3 = strcmp(String_, temp_str.String_);  // функция для сравнения двух строк лексично лексикографически.
+        char* result_true = new char [20] {"True"};
+        char* result_folse = new char [20] {"False"};
+        char* result_ravelo = new char [20] {"Ravelo"};
+        if (str3 < 1)
+        {
+            MYString Result(result_true);
+            return Result;
+        }
+        else if (str3 > 1)
+        {
+            MYString Result(result_folse);
+            return Result;
+        }
+        else if (str3 == 0)
+        {
+            MYString Result(result_ravelo);
+            return Result;
+        }
+        delete[] result_folse;
+        delete[] result_ravelo;
+        delete[] result_true;
     }
+// _______________________________________________________________________________________________________________________________
     void InpuT()                           // Функция ввода данных
     {
         if (String_ != nullptr)            // Делаем проверку если строка 
