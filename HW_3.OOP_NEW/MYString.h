@@ -131,6 +131,29 @@ public:
         delete[] result_true;
     }
 // _______________________________________________________________________________________________________________________________
+    MYString operator+(int symbol)  // Перегрузка оператора + для ситуации: int + MyString (к строке ххх + MyString )
+    {
+        char* symb_x = new char [symbol + 1];
+        for (size_t i = 0; i <= symbol; i++)
+        {
+            if (i < symbol)
+            {
+                symb_x[i] = {'x'};
+            }
+            else if (i == symbol)
+            {
+                symb_x[i] = { '\0' };
+            }
+        }
+        MYString temp_str;
+        temp_str.Length_ = this->Length_ + strlen(symb_x) + 1;
+        temp_str.String_ = new char[temp_str.Length_ + 1];
+        strcpy_s(temp_str.String_, temp_str.Length_ + 1, String_);
+        strcat_s(symb_x, temp_str.Length_ + 1,temp_str.String_);
+        return symb_x;
+        delete[] symb_x;
+    }
+// _______________________________________________________________________________________________________________________________
     void InpuT()                           // Функция ввода данных
     {
         if (String_ != nullptr)            // Делаем проверку если строка 

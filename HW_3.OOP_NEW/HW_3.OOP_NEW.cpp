@@ -24,8 +24,8 @@
 5. (+)
 6. (+)
 7. (+)
-8. (-)
-9. (-)
+8. (+)
+9. (+)
 
 */
 
@@ -95,9 +95,16 @@ int main()
 //	Overlad_three.OutPut();
 //	frame();
 // _______________________________________________________________________________________________________________________________
-	std::cout << "Overload (<) " << std::endl;  // 8. Перегрузить оператор <
-	MYString Overlad_four = temp_string_Overload_O < temp_string_Overload_G;
-	Overlad_four.OutPut();
+//	std::cout << "Overload (<) " << std::endl;  // 8. Перегрузить оператор <
+//	MYString Overlad_four = temp_string_Overload_O < temp_string_Overload_G;
+//	Overlad_four.OutPut();
+//	frame();
+// _______________________________________________________________________________________________________________________________
+	
+	std::cout << "Overload (int + MyString) " << std::endl;  // 9. Перегрузка оператора + для ситуации: int + MyString (к строке ххх + MyString )
+	int num_X = 2;
+	MYString Overlad_fifth = temp_string_Overload_O + num_X;
+	Overlad_fifth.OutPut();
 	frame();
 // _______________________________________________________________________________________________________________________________
 	return 0;									  
