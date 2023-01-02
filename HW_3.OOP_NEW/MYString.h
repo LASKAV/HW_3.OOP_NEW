@@ -54,10 +54,9 @@ public:
     MYString(const MYString& temp_String)      // 4. (Конструктор, копирования который создаёт строку,
     {                                          // полученной от пользователя (с клавиатуры) )
         Length_ = strlen(temp_String.String_);
-        String_ = new char[Length_ + 1];
-        strcpy_s(String_, Length_ + 1, temp_String.String_);
+        String_ = new char[Length_ + 100];
+        strcpy_s(String_, Length_ + 100, temp_String.String_);
         creating_OBJ++;
-        
     }
 // _______________________________________________________________________________________________________________________________//
 //                                                    Overloads
@@ -178,6 +177,25 @@ public:
         return creating_OBJ;
     }
 
+    void SetString_(char* sim)
+    {
+        Length_ = strlen(sim);
+        String_ = new char[Length_ + 1];
+        strcpy_s(String_, Length_ + 1, sim); 
+    }
+    void SetLength_(size_t size)
+    {
+        Length_ = size;
+    }
+    int GetLength_()
+    {
+        return Length_;
+    }
+    char* GetString_() const
+    {
+        return String_;
+    }
+
     ~MYString()
     {
         creating_OBJ--;
@@ -188,3 +206,4 @@ public:
 // _______________________________________________________________________________________________________________________________
 int MYString::creating_OBJ = 0;  //  статическое поле нужно обязательно инициализировать после создания класса
 // _______________________________________________________________________________________________________________________________
+
