@@ -4,7 +4,7 @@
 
 /*
 Разработать класс MyString
-Класс должен содержать методы для ввода строк с клавиатуры и вывода строк на экран и деструктор. 
+Класс должен содержать методы для ввода строк с клавиатуры и вывода строк на экран и деструктор.
 Также нужно реализовать статическую функцию-член, которая будет возвращать количество созданных объектов-строк.
 Класс должен содержать:
 1. Конструктор по умолчанию, позволяющий создать строку длиной 80 символов;
@@ -16,20 +16,21 @@
 7. Перегрузить оператор -- (удаление одного символа из конца нашего объекта-строки)
 8. Перегрузить оператор <
 9. Перегрузка оператора + для ситуации: int + MyString (к строке ххх + MyString )
+10. Добавить в класс MyString конструктор перемещения. 
+    (Исследовать ситуации, когда вызывается конструктор перемещения и когда вызывается конструктор копирования)
 
-1. (+)
-2. (+)
-3. (+)
-4. (+)
-5. (+)
-6. (+)
-7. (+)
-8. (+)
-9. (+)
+1.  (+)
+2.  (+)
+3.  (+)
+4.  (+)
+5.  (+)
+6.  (+)
+7.  (+)
+8.  (+)
+9.  (+)
+10. (+)
 
 */
-
-
 
 void frame();              // прототип функции ( Рамка =) )
 MYString& operator+(int symbol, MYString& temp);
@@ -40,11 +41,11 @@ int main()
 // _______________________________________________________________________________________________________________________________//
 //                                                    Constructors
 // _______________________________________________________________________________________________________________________________//
-//   	std::cout << "Constructor # 1" << std::endl;  // 1. (Конструктор по умолчанию, позволяющий создать строку длиной 80 символов)
-//    MYString Constructor_one;
-//   	Constructor_one.InpuT();
-//   	Constructor_one.OutPut();
-//   	frame();  // Рамка =)
+//   std::cout << "Constructor # 1" << std::endl;  // 1. (Конструктор по умолчанию, позволяющий создать строку длиной 80 символов)
+//   MYString Constructor_one;
+//   Constructor_one.InpuT();
+//   Constructor_one.OutPut();
+//   frame();  // Рамка =)
 // _______________________________________________________________________________________________________________________________
 //	std::cout << "Constructor # 2" << std::endl;  // 2. (Конструктор, позволяющий создавать строку произвольного размера)
 //	std::cout << "Enter size string : ";
@@ -79,6 +80,14 @@ int main()
 	char* temp_string_Overload_two = new char[BUFFER] { "string" };
 	MYString temp_string_Overload_O(temp_string_Overload_one);
 	MYString temp_string_Overload_G(temp_string_Overload_two);
+
+	//	MYString Overload_one = temp_string_Overload_O + temp_string_Overload_G;
+	//	Overload_one.OutPut();
+	//	delete[] temp_string_Overload_one;
+	//	delete[] temp_string_Overload_two;
+	//	frame();
+	// _______________________________________________________________________________________________________________________________
+
 //	MYString Overload_one = temp_string_Overload_O + temp_string_Overload_G;
 //	Overload_one.OutPut();
 //	delete[] temp_string_Overload_one;
@@ -103,16 +112,16 @@ int main()
 //	Overlad_four.OutPut();
 //	frame();
 // _______________________________________________________________________________________________________________________________
+
 	std::cout << "Overload (int + MyString) " << std::endl;  // 9. Перегрузка оператора + для ситуации: int + MyString (к строке ххх + MyString )
 	int num_X = 2;
 	MYString Overlad_fifth = num_X + temp_string_Overload_O;
 	Overlad_fifth.OutPut();
 	frame();
 // _______________________________________________________________________________________________________________________________
-	return 0;									  
+	return 0;
 
 }
-
 void frame()
 {
 	for (int i = 0; i < 35; i++)
@@ -124,6 +133,28 @@ void frame()
 
 MYString& operator+(int symbol, MYString& temp)  // Перегрузка оператора + для ситуации: int + MyString (к строке ххх + MyString )
 {
+	char* symb_x = new char[symbol + 1];
+	for (size_t i = 0; i <= symbol; i++)
+	{
+		if (i < symbol)
+		{
+			symb_x[i] = { 'x' };
+		}
+		else if (i == symbol)
+		{
+			symb_x[i] = { '\0' };
+		}
+	}
+	MYString str;
+	str.SetLength_(strlen(symb_x) + strlen(temp.GetString_()) + 1);
+	char* Temp_str = new char[str.GetLength_() + 1];
+	strcpy_s(Temp_str, str.GetLength_() + 1, symb_x);
+	strcat_s(Temp_str, str.GetLength_() + 1, temp.GetString_());
+	str.SetString_(Temp_str);
+	std::cout << Temp_str;
+	delete[] Temp_str;
+	delete[] symb_x;
+	return str;
     char* symb_x = new char[symbol + 1];
     for (size_t i = 0; i <= symbol; i++)
     {
