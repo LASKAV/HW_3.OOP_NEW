@@ -81,13 +81,6 @@ int main()
 	MYString temp_string_Overload_O(temp_string_Overload_one);
 	MYString temp_string_Overload_G(temp_string_Overload_two);
 
-	//	MYString Overload_one = temp_string_Overload_O + temp_string_Overload_G;
-	//	Overload_one.OutPut();
-	//	delete[] temp_string_Overload_one;
-	//	delete[] temp_string_Overload_two;
-	//	frame();
-	// _______________________________________________________________________________________________________________________________
-
 //	MYString Overload_one = temp_string_Overload_O + temp_string_Overload_G;
 //	Overload_one.OutPut();
 //	delete[] temp_string_Overload_one;
