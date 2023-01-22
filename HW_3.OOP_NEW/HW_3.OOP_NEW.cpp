@@ -117,6 +117,8 @@ int main()
 	Overlad_moving_one.OutPut();
 	MYString Overlad_moving_two("MyString = Hello");
 	Overlad_moving_two.OutPut();
+	Overlad_moving_one = Overlad_moving_two;
+	Overlad_moving_one.OutPut();
 	// _______________________________________________________________________________________________________________________________
 	Overlad_moving_one = std::move(Overlad_moving_two); // оператор присваивания с перемещением
 	Overlad_moving_one.OutPut();
