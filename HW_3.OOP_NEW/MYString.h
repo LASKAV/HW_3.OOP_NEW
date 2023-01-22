@@ -17,6 +17,8 @@
 9. Перегрузка оператора + для ситуации: int + MyString (к строке ххх + MyString )
 10. Добавить в класс MyString конструктор перемещения.
     (Исследовать ситуации, когда вызывается конструктор перемещения и когда вызывается конструктор копирования)
+11. Добавить перегрузку оператора присваивания копированием + 
+    перегрузку оператора присваивания перемещением.
 */
 
 class MYString                 // класс MYString
@@ -56,18 +58,19 @@ public:
     MYString(const MYString& temp_String)      // 4. (Конструктор, копирования который создаёт строку,
     {                                          // полученной от пользователя (с клавиатуры) )
         Length_ = strlen(temp_String.String_);
-        String_ = new char[Length_ + 100];
-        strcpy_s(String_, Length_ + 100, temp_String.String_);
+        String_ = new char[Length_ + 1];
+        strcpy_s(String_, Length_ + 1, temp_String.String_);
         creating_OBJ++;
     }
 // _______________________________________________________________________________________________________________________________
-    MYString(MYString&& temp_String)   noexcept    // конструктор перемещения
+    MYString(MYString&& temp_String)  noexcept    // конструктор перемещения
     {
         Length_ = temp_String.Length_;
         String_ = temp_String.String_;
         temp_String.String_ = nullptr;
         temp_String.Length_ = 0;
     }
+
 // _______________________________________________________________________________________________________________________________//
 //                                                    Overloads
 // _______________________________________________________________________________________________________________________________//
@@ -162,7 +165,47 @@ public:
         return symb_x;
         delete[] symb_x;
     }
-    // _______________________________________________________________________________________________________________________________
+// _______________________________________________________________________________________________________________________________
+
+    MYString& operator = (const MYString& temp_str)  // присваивания с копированием
+    {
+
+        if (!(this == &temp_str))
+        {
+            // if (String_ != nullptr)
+            // {
+            //     delete[] String_;
+            // }
+            if (temp_str.String_ == nullptr)
+            {
+                String_ = nullptr;
+                Length_ = temp_str.Length_;
+                return *this;
+            }
+
+            String_ = new char[strlen(temp_str.String_) + 1];
+            strcpy_s(String_, strlen(temp_str.String_) + 1, temp_str.String_);
+            Length_ = temp_str.Length_;
+        }
+        return *this;
+    }
+// _______________________________________________________________________________________________________________________________
+
+    MYString& operator = (MYString&& temp_str) noexcept
+    {
+        std::cout << "Assignment operator overloading by copying " << std::endl;
+
+        if (!(this == &temp_str))
+        {
+            delete[] String_;
+
+            String_ = temp_str.String_;
+            temp_str.String_ = nullptr;
+            Length_ = temp_str.Length_;
+            temp_str.Length_ = NULL;
+        }
+        return *this;
+    }
     void InpuT()                           // Функция ввода данных
     {
         if (String_ != nullptr)            // Делаем проверку если строка 
@@ -177,7 +220,7 @@ public:
         strcpy_s(String_, Length_, Input_String);
     }
 
-    void OutPut() const                          // Функция вывода данных
+    void OutPut()                           // Функция вывода данных
     {
         std::cout << "String received : " << String_ << std::endl;
     }
@@ -208,6 +251,7 @@ public:
 
     ~MYString()
     {
+        std::cout << "Destructor" << std::endl;
         creating_OBJ--;
         delete[] String_;
     }
