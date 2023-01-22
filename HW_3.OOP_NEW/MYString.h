@@ -61,7 +61,7 @@ public:
         creating_OBJ++;
     }
 // _______________________________________________________________________________________________________________________________
-    MYString(MYString&& temp_String)     // конструктор перемещения
+    MYString(MYString&& temp_String)   noexcept    // конструктор перемещения
     {
         Length_ = temp_String.Length_;
         String_ = temp_String.String_;
