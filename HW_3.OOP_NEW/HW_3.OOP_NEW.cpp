@@ -22,6 +22,9 @@
 11. Добавить перегрузку оператора присваивания копированием +
 перегрузку оператора присваивания перемещением.
 
+12. Добавить конструктор Initializer_list.
+	Создать объект типа MyString с помощью этого конструктора.
+
 1.  (+)
 2.  (+)
 3.  (+)
@@ -78,22 +81,22 @@ int main()
 	// _______________________________________________________________________________________________________________________________//
 	//                                                    Overloads
 	// _______________________________________________________________________________________________________________________________//
-	// std::cout << "Overload (+) " << std::endl;       // 5. Перегрузить оператор + (он будет работать как конкатенация строк)
-	// char* temp_string_Overload_one = new char[BUFFER] { "string" };
-	// char* temp_string_Overload_two = new char[BUFFER] { "string" };
-	// MYString temp_string_Overload_O(temp_string_Overload_one);
-	// MYString temp_string_Overload_G(temp_string_Overload_two);
-	//	MYString Overload_one = temp_string_Overload_O + temp_string_Overload_G;
-	//	Overload_one.OutPut();
-	//	delete[] temp_string_Overload_one;
-	//	delete[] temp_string_Overload_two;
-	//	frame();
+	//  std::cout << "Overload (+) " << std::endl;       // 5. Перегрузить оператор + (он будет работать как конкатенация строк)
+	//  char* temp_string_Overload_one = new char[BUFFER] { "string" };
+	//  char* temp_string_Overload_two = new char[BUFFER] { "string" };
+	//  MYString temp_string_Overload_O(temp_string_Overload_one);
+	//  MYString temp_string_Overload_G(temp_string_Overload_two);
+	//  MYString Overload_one = temp_string_Overload_O + temp_string_Overload_G;
+	//  Overload_one.OutPut();
+	//  delete[] temp_string_Overload_one;
+	//  delete[] temp_string_Overload_two;
+	//  frame();
 	// _______________________________________________________________________________________________________________________________
-	// std::cout << "Overload (++) " << std::endl;   // 6. Перегрузить оператор ++ (добавление к концу нашего объекта-строки одного символа 'x')
-	// MYString Overload_two = temp_string_Overload_O;
-	// ++Overload_two;
-	// Overload_two.OutPut();
-	// frame();
+	//  std::cout << "Overload (++) " << std::endl;   // 6. Перегрузить оператор ++ (добавление к концу нашего объекта-строки одного символа 'x')
+	//  MYString Overload_two = temp_string_Overload_O;
+	//  ++Overload_two;
+	//  Overload_two.OutPut();
+	//  frame();
 	// _______________________________________________________________________________________________________________________________
 	//	std::cout << "Overload (--) " << std::endl;  // 7. Перегрузить оператор -- (удаление одного символа из конца нашего объекта-строки)
 	//	MYString Overlad_three = temp_string_Overload_G;
@@ -107,22 +110,27 @@ int main()
 	//	Overlad_four.OutPut();
 	//	frame();
 	// _______________________________________________________________________________________________________________________________
-	// std::cout << "Overload (int + MyString) " << std::endl;  // 9. Перегрузка оператора + для ситуации: int + MyString (к строке ххх + MyString )
-	// int num_X = 2;
-	// MYString Overlad_fifth = num_X + temp_string_Overload_O;
-	// Overlad_fifth.OutPut();
-	// frame();
+	//  std::cout << "Overload (int + MyString) " << std::endl;  // 9. Перегрузка оператора + для ситуации: int + MyString (к строке ххх + MyString )
+	//  int num_X = 2;
+	//  MYString Overlad_fifth = num_X + temp_string_Overload_O;
+	//  Overlad_fifth.OutPut();
+	//  frame();
 	// _______________________________________________________________________________________________________________________________
 
-	MYString Overlad_moving_one("Hello MyString");   // Перегрузка оператора присваивания перемещением
-	Overlad_moving_one.OutPut();
-	MYString Overlad_moving_two("MyString = Hello");
-	Overlad_moving_two.OutPut();
-	Overlad_moving_one = Overlad_moving_two;
-	Overlad_moving_one.OutPut();
+	//  MYString Overlad_moving_one("Hello MyString");   // Перегрузка оператора присваивания перемещением
+	//  Overlad_moving_one.OutPut();
+	//  MYString Overlad_moving_two("MyString = Hello");
+	//  Overlad_moving_two.OutPut();
+	//  Overlad_moving_one = Overlad_moving_two;
+	//  Overlad_moving_one.OutPut();
 	// _______________________________________________________________________________________________________________________________
-	Overlad_moving_one = std::move(Overlad_moving_two); // оператор присваивания с перемещением
-	Overlad_moving_one.OutPut();
+	//  Overlad_moving_one = std::move(Overlad_moving_two); // оператор присваивания с перемещением
+	//  Overlad_moving_one.OutPut();
+	// _______________________________________________________________________________________________________________________________
+	std::cout << "Constructor initializer_list " << std::endl;
+	MYString constr_init{ 'M','y',' ','s','t','r','i','n','g','\0'};
+	constr_init.OutPut();
+	// _______________________________________________________________________________________________________________________________
 	return 0;
 
 }
